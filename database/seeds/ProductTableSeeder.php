@@ -9,6 +9,8 @@ class ProductTableSeeder extends Seeder
      *
      * @return void
      */
+    
+    //this seeds here will be store in the databased 
     public function run()
     {
         $product = new Product([

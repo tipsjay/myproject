@@ -13,14 +13,13 @@ use Session;
 
 class ProductController extends Controller
 {
-    public function getIndex()
+    public function getIndex() //retrieve all product data from database and display it 
     {
-
       $products = Product::all();
       return view('shop.index',['products'=>$products]);
     }
 
-    public function getAddToCart(Request $request, $id)
+    public function getAddToCart(Request $request, $id) // this function add item to cart
     {
        $product = Product::find($id);
        $oldCart = Session::has('cart') ? Session::get('cart') : null;
@@ -32,22 +31,22 @@ class ProductController extends Controller
        return redirect()->route('product.index');
     }
 
-    public function getReduceByOne($id)
+    public function getReduceByOne($id) //this function deduct item from the cart
     {
           $oldCart = Session::has('cart') ? Session::get('cart') : null;
           $cart = new Cart($oldCart);
           $cart->reduceByOne($id);
 
-          if(count($cart->items) > 0){
+          if(count($cart->items) > 0){ //checks if the item is greater than 0 then put in the session
                 Session::put('cart', $cart);
           }else{
-                Session::forget('cart');
+                Session::forget('cart');// else forget the session
           }
           
-          return redirect()->route('product.shoppingCart');
+          return redirect()->route('product.shoppingCart'); //brings back to user cart page
     }
 
-    public function getRemoveItem($id)
+    public function getRemoveItem($id) //remove item from customer's cart
     {
       $oldCart = Session::has('cart') ? Session::get('cart') : null;
       $cart = new Cart($oldCart);
@@ -59,10 +58,10 @@ class ProductController extends Controller
             Session::forget('cart');
       }
 
-      return redirect()->route('product.shoppingCart');
+      return redirect()->route('product.shoppingCart'); // brings back  to user cart page
     }
 
-    public function getCart() {
+    public function getCart() {  // get the cart page
         if (!Session::has('cart')){
               return view('shop.shopping-cart',['products' => null]);
         }
@@ -72,7 +71,7 @@ class ProductController extends Controller
 
     }
 
-    public function getCheckout(Request $request)
+    public function getCheckout(Request $request) // get the checkout page
     {
         if (!Session::has('cart')){
               return view('shop.shopping-cart');
@@ -83,7 +82,10 @@ class ProductController extends Controller
         return view('shop.checkout',['total'=>$total]);
     }
 
-    public function postCheckout(Request $request)
+    public function postCheckout(Request $request) /*
+                                                      this is not the final gateaway payment for 
+                                                      a customer
+                                                   */                                 
     {
 
         if(!Session::has('cart')){

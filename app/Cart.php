@@ -2,6 +2,7 @@
 
 namespace App;
 
+// Storing the cart in the session not yet in the database
 
 class Cart
 {

@@ -1,3 +1,6 @@
+
+<!-- the header is powered by boostrap -->
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -8,7 +11,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{ route('product.index') }}">Zartech Online Arbitrage</a>
+      <a class="navbar-brand" href="{{ route('product.index') }}">ZTS</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

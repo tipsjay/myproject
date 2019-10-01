@@ -1,10 +1,16 @@
 <?php
 
-
+/*
+      I am actually using other way to route the previous one 
+      is not like this but upon learning this is a nice also
+      very clear it's only for me but for my team
+ */
 Route::get('/', [
-      'uses' => 'ProductController@getIndex',
-      'as' => 'product.index'
+      'uses' => 'ProductController@getIndex', // pointing to ProductController where there is a method named 'getIndex'
+      'as' => 'product.index' // this like the name of the route, you can use by calling this 'product.index'
 ]);
+
+/** Everything follows except for I group the other below, still the same*/
 
 Route::get('/add-to-cart/{id}',[
         'uses' => 'ProductController@getAddToCart',
@@ -63,7 +69,7 @@ Route::group(['prefix'=>'user'],function(){
       });
 
       //group the route by middleware
-      Route::group(['middleware'=> 'auth'],function(){
+      Route::group(['middleware'=> 'auth'],function(){ // using 'auth' middleware
             Route::get('/profile',[
                 'uses' => 'UserController@getProfile',
                 'as' => 'user.profile',
