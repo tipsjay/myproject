@@ -1,15 +1,18 @@
 <?php
 
 
-Route::get('/', [
-      'uses' => 'ProductController@getIndex',
-      'as' => 'product.index'
-]);
+// Route::get('/', [
+//       'uses' => 'ProductController@getIndex',
+//       'as' => 'product.index'
+// ]);
 
-Route::get('/add-to-cart/{id}',[
-        'uses' => 'ProductController@getAddToCart',
-        'as' => 'product.addToCart'
-]);
+Route::get('/','ProductController@getIndex')->name('product.index');
+Route::get('/add-to-cart/{id}','ProductController@getAddToCart')->name('product.index');
+
+// Route::get('/add-to-cart/{id}',[
+//         'uses' => 'ProductController@getAddToCart',
+//         'as' => 'product.addToCart'
+// ]);
 
 Route::get('/reduce/{id}',[
       'uses' => 'ProductController@getReduceByOne',
